@@ -12,6 +12,7 @@ var persistent = _.persistent.open( '.persistent.sample' );
 var read = persistent.array( 'account' ).structureRead();
 persistent.close();
 console.log( read );
+
 /*
 log : [ { a : '1' } ]
 */

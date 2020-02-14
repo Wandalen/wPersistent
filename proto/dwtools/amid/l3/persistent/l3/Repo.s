@@ -45,6 +45,32 @@ function close()
 
 //
 
+function clean()
+{
+  let repo = this;
+  let path = _.fileProvider.path;
+
+  let filePath = repo.filePathGet();
+
+  _.fileProvider.filesDelete( filePath );
+
+  return repo;
+}
+
+//
+
+function exists()
+{
+  let repo = this;
+  let path = _.fileProvider.path;
+
+  let filePath = repo.filePathGet();
+
+  return _.fileProvider.isDir( filePath );
+}
+
+//
+
 function _collection( o )
 {
   let repo = this;
@@ -182,6 +208,8 @@ let Proto =
 
   init,
   close,
+  clean,
+  exists,
 
   _collection,
   collection,
