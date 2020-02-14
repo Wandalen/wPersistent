@@ -25,14 +25,8 @@ var _ = _global_.wTools;
 function basicArray( test )
 {
 
-  test.description = 'was clean';
-  var exp =
-  [
-  ]
-  var persistent = _.persistent.open({ name : '.' + test.suite.name });
-  var read = persistent.array( 'account' ).structureRead();
-  persistent.close();
-  test.identical( read, exp );
+  test.description = 'wipe';
+  _.persistent.open({ name : '.' + test.suite.name }).clean().close();
 
   test.description = 'writing';
   var structure1 = { a : '1', b : { c : [ 1, 2, 3 ], d : null } }
@@ -72,7 +66,7 @@ function basicArray( test )
   persistent.close();
   test.identical( read, exp );
 
-  _.persistent.open({ name : '.' + test.suite.name }).clean();
+  _.persistent.open({ name : '.' + test.suite.name }).clean().close();
 }
 
 basicArray.description =
@@ -80,6 +74,44 @@ basicArray.description =
 - method structureAppend appends element of array and store the structure
 - method structurePrepend prepends element of array and store the structure
 - method clean deletes collection
+`
+
+//
+
+function structureAppend( test )
+{
+
+  test.description = 'wipe';
+  _.persistent.open({ name : '.' + test.suite.name }).clean().close();
+
+  test.description = 'writing';
+  var structure1 = { x : 1 }
+  var persistent = _.persistent.open({ name : '.' + test.suite.name });
+  persistent.structureAppend( 'a/b', structure1 );
+  persistent.close();
+
+  test.description = 'written';
+  var exp =
+  {
+    'a' :
+    {
+      'b' :
+      [
+        { 'x' : 1 }
+      ]
+    }
+  }
+  var persistent = _.persistent.open({ name : '.' + test.suite.name });
+  var read = persistent.structureRead();
+  persistent.close();
+  test.identical( read, exp );
+
+  _.persistent.open({ name : '.' + test.suite.name }).clean().close();
+}
+
+structureAppend.description =
+`
+- structureAppend into clean repo create it and its fil
 `
 
 //
@@ -132,7 +164,7 @@ function basicMap( test )
   persistent.close();
   test.identical( read, exp );
 
-  _.persistent.open({ name : '.' + test.suite.name }).clean();
+  _.persistent.open({ name : '.' + test.suite.name }).clean().close();
 }
 
 basicMap.description =
@@ -575,6 +607,7 @@ var Self =
   {
 
     basicArray,
+    structureAppend,
     basicMap,
     secondLevel,
     structureProxy,

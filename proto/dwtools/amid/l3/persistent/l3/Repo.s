@@ -239,12 +239,15 @@ function structureAppend( selector, structure )
   let read = repo._fileRead( selector );
   let dir = read.selector2;
 
+  debugger;
   let selected = _.select
   ({
     src : read.structure,
     selector : dir,
   })
 
+  if( read.structure === undefined )
+  read.structure = Object.create( null );
   if( !selected )
   {
     selected = [];
