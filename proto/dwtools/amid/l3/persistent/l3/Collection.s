@@ -35,7 +35,7 @@ function init( o )
 
   if( collection.kind === null )
   {
-    let read = collection.structureRead();
+    let read = collection.read();
     if( _.arrayIs( read ) )
     collection.kind = 'array';
     else
@@ -128,7 +128,7 @@ function map( collectionName )
 
 //
 
-function structureAppend( structure )
+function append( structure )
 {
   let collection = this;
   let path = _.fileProvider.path;
@@ -136,17 +136,17 @@ function structureAppend( structure )
 
   _.assert( arguments.length === 1 );
 
-  read = collection.structureRead();
+  read = collection.read();
   read.push( structure );
 
-  collection.structureWrite( read );
+  collection.write( read );
 
   return collection;
 }
 
 //
 
-function structurePrepend( structure )
+function prepend( structure )
 {
   let collection = this;
   let path = _.fileProvider.path;
@@ -154,17 +154,17 @@ function structurePrepend( structure )
 
   _.assert( arguments.length === 1 );
 
-  read = collection.structureRead();
+  read = collection.read();
   read.unshift( structure );
 
-  collection.structureWrite( read );
+  collection.write( read );
 
   return collection;
 }
 
 //
 
-function structureInsert( key, structure )
+function insert( key, structure )
 {
   let collection = this;
   let path = _.fileProvider.path;
@@ -172,17 +172,17 @@ function structureInsert( key, structure )
 
   _.assert( arguments.length === 2 );
 
-  read = collection.structureRead();
+  read = collection.read();
   read[ key ] = structure;
 
-  collection.structureWrite( read );
+  collection.write( read );
 
   return collection;
 }
 
 //
 
-function structureWrite( structure )
+function write( structure )
 {
   let collection = this;
   let path = _.fileProvider.path;
@@ -199,7 +199,7 @@ function structureWrite( structure )
 
 //
 
-function structureRead()
+function read()
 {
   let collection = this;
   let path = _.fileProvider.path;
@@ -216,12 +216,12 @@ function structureRead()
     return Object.create( null );
   }
 
-  collection.read = _.fileProvider.fileRead({ filePath : filePath, encoding : 'json' });
+  read = _.fileProvider.fileRead({ filePath : filePath, encoding : 'json' });
 
   if( collection.selector === '/' )
-  return collection.read;
+  return read;
   else
-  return _.select( collection.read, collection.selector );
+  return _.select( read, collection.selector );
 }
 
 //
@@ -261,7 +261,7 @@ let Associates =
 
 let Restricts =
 {
-  read : null,
+  // read : null,
   selector : '/',
 }
 
@@ -292,11 +292,11 @@ let Proto =
   array,
   map,
 
-  structureAppend,
-  structurePrepend,
-  structureInsert,
-  structureWrite,
-  structureRead,
+  append,
+  prepend,
+  insert,
+  write,
+  read,
   clean,
 
   // relation

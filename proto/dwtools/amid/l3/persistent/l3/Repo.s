@@ -45,32 +45,6 @@ function close()
 
 //
 
-function clean()
-{
-  let repo = this;
-  let path = _.fileProvider.path;
-
-  let filePath = repo.filePathGet();
-
-  _.fileProvider.filesDelete( filePath );
-
-  return repo;
-}
-
-//
-
-function exists()
-{
-  let repo = this;
-  let path = _.fileProvider.path;
-
-  let filePath = repo.filePathGet();
-
-  return _.fileProvider.isDir( filePath );
-}
-
-//
-
 function _collection( o )
 {
   let repo = this;
@@ -132,170 +106,37 @@ function collectionsNames()
 
 //
 
-function structureRead( selector )
-{
-  let repo = this;
-  let result = repo._fileRead( selector );
-
-  if( result.structure === undefined )
-  return result.structure;
-
-  if( !result.selector2 || result.selector2 === '/' )
-  return result.structure;
-  else
-  return _.select( result.structure, result.selector2 );
-
-}
-
+// function structureGet()
+// {
+//   let repo = this;
 //
-
-function _fileRead( selector )
-{
-  let repo = this;
-  let result = Object.create( null );
-
-  result.selector = selector || '/';
-
-  _.assert( arguments.length === 0 || arguments.length === 1 );
-
-  let selectorArray = _.path.split( result.selector );
-  if( !selectorArray[ 0 ] )
-  selectorArray.splice( 0, 1 );
-  result.selector1 = selectorArray[ 0 ];
-  result.selector2 = selectorArray.slice( 1 ).join( '/' );
-  result.filePath = repo.filePathFor( result.selector1 );
-
-  if( result.selector1 === '' )
-  {
-    result.structure = Object.create( null );
-    let names = repo.collectionsNames();
-    names.forEach( ( name ) => result.structure[ name ] = repo.structureRead( `/${name}` ) );
-    return result;
-  }
-
-  if( !_.fileProvider.isTerminal( result.filePath ) )
-  {
-    return result;
-  }
-
-  result.structure = _.fileProvider.fileRead({ filePath : result.filePath, encoding : 'json' });
-
-  return result;
-}
-
+//   let original = Object.create( null );
+//   let handler =
+//   {
+//     get : function( original, key, proxy )
+//     {
+//       if( _.symbolIs( key ) )
+//       return undefined;
+//       return repo.collection( key ).read();
+//     },
+//     set : function( original, key, val, proxy )
+//     {
+//       if( _.symbolIs( key ) )
+//       return false;
+//       repo.collection( key ).write( val );
+//       return true;
+//     },
+//     ownKeys : function( original )
+//     {
+//       let result = repo.collectionsNames();
+//       return result;
+//     }
+//   }
 //
-
-function structureWrite( selector, structure )
-{
-  let repo = this;
-  let selectorArray = _.path.split( selector );
-  if( !selectorArray[ 0 ] )
-  selectorArray.splice( 0, 1 );
-  let selector2 = selectorArray.slice( 1 ).join( '/' );
-  let selector1 = selectorArray[ 0 ];
-  let filePath = repo.filePathFor( selector1 );
-
-  _.assert( arguments.length === 2 );
-
-  if( selector2 && selector2 !== '/' && selector2 !== '.' )
-  {
-    debugger;
-    let read = repo.structureRead( selector1 );
-    _.selectSet({ src : read, selector : selector2, set : structure });
-    structure = read;
-  }
-
-  if( _.fileProvider.isDir( filePath ) )
-  throw _.err( `${filePath} is directory, cant overwrite!` );
-  _.fileProvider.fileWrite( filePath, _.toJson( structure ) );
-
-}
-
+//   let result = new Proxy( original, handler );
 //
-
-function structureInsert( selector, structure )
-{
-  let repo = this;
-  let read = repo._fileRead( selector );
-
-  if( read.structure === undefined )
-  read.structure = Object.create( null );
-  _.selectSet
-  ({
-    src : read.structure,
-    selector : read.selector2,
-    set : structure,
-  })
-
-  repo.structureWrite( read.selector1, read.structure );
-  return read;
-}
-
-//
-
-function structureAppend( selector, structure )
-{
-  let repo = this;
-  let read = repo._fileRead( selector );
-  let dir = read.selector2;
-
-  debugger;
-  let selected = _.select
-  ({
-    src : read.structure,
-    selector : dir,
-  })
-
-  if( read.structure === undefined )
-  read.structure = Object.create( null );
-  if( !selected )
-  {
-    selected = [];
-    _.selectSet
-    ({
-      src : read.structure,
-      selector : dir,
-      set : selected,
-    })
-  }
-
-  selected.push( structure )
-  repo.structureWrite( read.selector1, read.structure );
-}
-
-//
-
-function structureGet()
-{
-  let repo = this;
-
-  let original = Object.create( null );
-  let handler =
-  {
-    get : function( original, key, proxy )
-    {
-      if( _.symbolIs( key ) )
-      return undefined;
-      return repo.collection( key ).structureRead();
-    },
-    set : function( original, key, val, proxy )
-    {
-      if( _.symbolIs( key ) )
-      return false;
-      repo.collection( key ).structureWrite( val );
-      return true;
-    },
-    ownKeys : function( original )
-    {
-      let result = repo.collectionsNames();
-      return result;
-    }
-  }
-
-  let result = new Proxy( original, handler );
-
-  return result;
-}
+//   return result;
+// }
 
 //
 
@@ -323,6 +164,387 @@ function filePathFor( collectionName )
 }
 
 // --
+// manipulator
+// --
+
+function _fileRead( selector )
+{
+  let repo = this;
+  let result = Object.create( null );
+
+  result.selector = selector || '/';
+
+  _.assert( arguments.length === 0 || arguments.length === 1 );
+
+  let selectorArray = _.path.split( result.selector );
+  if( !selectorArray[ 0 ] )
+  selectorArray.splice( 0, 1 );
+  result.selector1 = selectorArray[ 0 ];
+  result.selector2 = selectorArray.slice( 1 ).join( '/' );
+  result.filePath = repo.filePathFor( result.selector1 );
+
+  if( result.selector1 === '' )
+  {
+    result.structure = Object.create( null );
+    let names = repo.collectionsNames();
+    names.forEach( ( name ) => result.structure[ name ] = repo.read( `/${name}` ) );
+    return result;
+  }
+
+  if( !_.fileProvider.isTerminal( result.filePath ) )
+  {
+    return result;
+  }
+
+  result.structure = _.fileProvider.fileRead({ filePath : result.filePath, encoding : 'json' });
+
+  return result;
+}
+
+//
+
+function read( selector )
+{
+  let repo = this;
+  let result = repo._fileRead( selector );
+
+  if( result.structure === undefined )
+  return result.structure;
+
+  if( !result.selector2 || result.selector2 === '/' )
+  return result.structure;
+  else
+  return _.select( result.structure, result.selector2 );
+
+}
+
+//
+
+function write( selector, structure )
+{
+  let repo = this;
+  let read = repo._fileRead( selector );
+
+  _.assert( arguments.length === 2 );
+
+  if( !read.selector1 )
+  {
+    _.assert( _.mapIs( structure ), 'Should be map here' );
+    for( let s in structure )
+    repo.write( _.path.join( selector, s ), structure[ s ] );
+    return;
+  }
+
+  if( !read.selector2 || read.selector2 === '/' || read.selector2 === '.' )
+  {
+    read.structure = structure;
+  }
+  else if( read.selector2  )
+  {
+    if( read.structure === undefined )
+    read.structure = Object.create( null );
+    _.selectSet({ src : read.structure, selector : read.selector2, set : structure });
+  }
+
+  if( _.fileProvider.isDir( read.filePath ) )
+  throw _.err( `${read.filePath} is directory, cant overwrite!` );
+  _.fileProvider.fileWrite( read.filePath, _.toJson( read.structure ) );
+
+}
+
+//
+
+function insert( selector, structure )
+{
+  let repo = this;
+  let read = repo._fileRead( selector );
+
+
+  if( read.structure === undefined )
+  read.structure = Object.create( null );
+
+  if( read.selector2 )
+  _.selectSet
+  ({
+    src : read.structure,
+    selector : read.selector2,
+    set : structure,
+  })
+  else
+  read.structure = structure;
+
+  repo.write( read.selector1, read.structure );
+  return read;
+}
+
+//
+
+function _pend( selector, structure, appending )
+{
+  let repo = this;
+  let read = repo._fileRead( selector );
+  let selected;
+
+  if( read.selector2 )
+  {
+    if( read.structure !== undefined )
+    selected = _.select
+    ({
+      src : read.structure,
+      selector : read.selector2,
+    })
+  }
+
+  if( read.structure === undefined )
+  read.structure = Object.create( null );
+
+  if( !selected )
+  {
+    selected = [];
+    if( read.selector2 )
+    _.selectSet
+    ({
+      src : read.structure,
+      selector : read.selector2,
+      set : selected,
+    })
+    else
+    read.structure = selected;
+  }
+
+  if( appending )
+  selected.push( structure )
+  else
+  selected.unshift( structure )
+  repo.write( read.selector1, read.structure );
+}
+
+//
+
+function append( selector, structure )
+{
+  let repo = this;
+  return repo._pend( selector, structure, 1 );
+}
+
+//
+
+function prepend( selector, structure )
+{
+  let repo = this;
+  return repo._pend( selector, structure, 0 );
+}
+
+//
+
+/* qqq : please cover routines delete and deleteStrict. check returned value and throwing cases */
+
+function delete_pre( routine, args )
+{
+  let repo = this;
+
+  if( _.strIs( args[ 0 ] ) )
+  {
+    args = [ { selector : args[ 0 ] } ]
+  }
+
+  _.assert( args.length === 1 );
+  _.routineOptions( routine, args );
+
+  let o = args[ 0 ];
+
+  if( o.selector === undefined )
+  o.selector = '/';
+  if( o.selector === '' )
+  o.selector = '/';
+
+  return o;
+}
+
+function delete_body( o )
+{
+  let repo = this;
+
+  _.assertRoutineOptions( delete_body, arguments );
+
+  if( o.selector === '/' )
+  {
+    return repo.clean({ strict : o.strict });
+  }
+
+  let read = repo._fileRead( o.selector );
+
+  if( !read.selector2 )
+  {
+    if( !_.fileProvider.isTerminal( read.filePath ) )
+    {
+      if( o.strict )
+      throw _.err( `Does not exist ${o.selector}` );
+      return false;
+    }
+    _.fileProvider.fileDelete( read.filePath );
+  }
+  else
+  {
+    _.selectSet
+    ({
+      src : read.structure,
+      selector : read.selector2,
+      set : undefined,
+      missingAction : o.strict ? 'throw' : 'undefine',
+    });
+    _.fileProvider.fileWrite( read.filePath, _.toJson( read.structure ) );
+  }
+
+  return true;
+}
+
+delete_body.defaults =
+{
+  selector : null,
+  strict : 0,
+}
+
+//
+
+let delete_ = _.routineFromPreAndBody( delete_pre, delete_body, 'delete' );
+delete_.defaults.strict = 0;
+
+let deleteStrict = _.routineFromPreAndBody( delete_pre, delete_body, 'deleteStrict' );
+deleteStrict.defaults.strict = 1;
+
+//
+
+function clean( o )
+{
+  let repo = this;
+  let path = _.fileProvider.path;
+  let filePath = repo.filePathGet();
+
+  o = _.routineOptions( clean, arguments );
+
+  _.fileProvider.filesDelete({ filePath, mandatory : o.strict });
+
+  return repo;
+}
+
+clean.defaults =
+{
+  strict : 0,
+}
+
+//
+
+function exists()
+{
+  let repo = this;
+  let path = _.fileProvider.path;
+  let filePath = repo.filePathGet();
+
+  return _.fileProvider.isDir( filePath );
+}
+
+// --
+// exporter
+// --
+
+function exportStructure( o )
+{
+  let resource = this;
+
+  o = _.routineOptions( exportStructure, arguments );
+
+  if( o.src === null )
+  o.src = resource;
+
+  o.dst = o.src.read( '/' );
+
+  return o.dst;
+}
+
+exportStructure.defaults =
+{
+  ... _.workpiece.exportStructure.defaults,
+}
+
+//
+
+function exportInfo( o )
+{
+  let resource = this;
+  return _.workpiece.exportInfo( resource, ... arguments );
+}
+
+exportInfo.defaults =
+{
+  ... _.workpiece.exportInfo.defaults,
+}
+
+//
+
+// function exportStructure( o )
+// {
+//   let repo = this;
+//   let path = _.fileProvider.path;
+//   let filePath = repo.filePathGet();
+//
+//   o = _.routineOptions( exportStructure, arguments );
+//
+//   if( o.src === null )
+//   o.src = resource;
+//
+//   if( o.dst === null )
+//   o.dst = Object.create( null );
+//
+//   o.dst = _.replicate
+//   ({
+//     src : o.src,
+//     dst : o.dst,
+//     onSrcChanged : onSrcChanged,
+//     onAscend : onAscend,
+//   });
+//
+//   o.dst += _.toStrNice( o.src );
+//
+//   return o.dst;
+// }
+//
+// exportStructure.defaults =
+// {
+//   dst : null,
+//   src : null,
+// }
+//
+// //
+//
+// function exportInfo( o )
+// {
+//   let repo = this;
+//   let path = _.fileProvider.path;
+//   let filePath = repo.filePathGet();
+//
+//   o = _.routineOptions( exportInfo, arguments );
+//
+//   if( o.dst === null )
+//   o.dst = '';
+//   if( o.src === null )
+//   debugger;
+//   if( o.src === null )
+//   o.src = _.routineCallButOnly( repo, 'exportStructure', [ 'dst' ] );
+//
+//   o.dst += _.toStrNice( o.src );
+//
+//   return o.dst;
+// }
+//
+// exportInfo.defaults =
+// {
+//   dst : null,
+//   src : null,
+//   verbosity : 9,
+// }
+
+// --
 // relations
 // --
 
@@ -341,7 +563,6 @@ let Associates =
 
 let Restricts =
 {
-  read : null,
 }
 
 let Statics =
@@ -350,11 +571,11 @@ let Statics =
 
 let Forbids =
 {
+  structure : 'structure',
 }
 
 let Accessors =
 {
-  structure : {},
 }
 
 // --
@@ -368,24 +589,37 @@ let Proto =
 
   init,
   close,
-  clean,
-  exists,
+
+  //
 
   _collection,
   collection,
   array,
   map,
   collectionsNames,
-
-  _fileRead,
-  structureRead,
-  structureWrite,
-  structureInsert,
-  structureAppend,
-
-  structureGet,
+  // structureGet,
   filePathGet,
   filePathFor,
+
+  // manipulator
+
+  _fileRead,
+  read,
+  write,
+  insert,
+  _pend,
+  append,
+  prepend,
+  delete : delete_,
+  deleteStrict,
+
+  clean,
+  exists,
+
+  // exporter
+
+  exportStructure,
+  exportInfo,
 
   // relation
 

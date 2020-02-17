@@ -3,7 +3,7 @@
 'use strict';
 
 // let persistent = _.persistent.open({ name : '.system.wcloud' });
-// persistent.array( 'account' ).structureWrite( structure );
+// persistent.array( 'account' ).write( structure );
 
 let _ = _global_.wTools;
 let Self = _.persistent = _.persistent || Object.create( null );
