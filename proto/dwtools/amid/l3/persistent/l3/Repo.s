@@ -106,40 +106,6 @@ function collectionsNames()
 
 //
 
-// function structureGet()
-// {
-//   let repo = this;
-//
-//   let original = Object.create( null );
-//   let handler =
-//   {
-//     get : function( original, key, proxy )
-//     {
-//       if( _.symbolIs( key ) )
-//       return undefined;
-//       return repo.collection( key ).read();
-//     },
-//     set : function( original, key, val, proxy )
-//     {
-//       if( _.symbolIs( key ) )
-//       return false;
-//       repo.collection( key ).write( val );
-//       return true;
-//     },
-//     ownKeys : function( original )
-//     {
-//       let result = repo.collectionsNames();
-//       return result;
-//     }
-//   }
-//
-//   let result = new Proxy( original, handler );
-//
-//   return result;
-// }
-
-//
-
 function filePathGet()
 {
   let repo = this;
@@ -480,70 +446,6 @@ exportInfo.defaults =
   ... _.workpiece.exportInfo.defaults,
 }
 
-//
-
-// function exportStructure( o )
-// {
-//   let repo = this;
-//   let path = _.fileProvider.path;
-//   let filePath = repo.filePathGet();
-//
-//   o = _.routineOptions( exportStructure, arguments );
-//
-//   if( o.src === null )
-//   o.src = resource;
-//
-//   if( o.dst === null )
-//   o.dst = Object.create( null );
-//
-//   o.dst = _.replicate
-//   ({
-//     src : o.src,
-//     dst : o.dst,
-//     onSrcChanged : onSrcChanged,
-//     onAscend : onAscend,
-//   });
-//
-//   o.dst += _.toStrNice( o.src );
-//
-//   return o.dst;
-// }
-//
-// exportStructure.defaults =
-// {
-//   dst : null,
-//   src : null,
-// }
-//
-// //
-//
-// function exportInfo( o )
-// {
-//   let repo = this;
-//   let path = _.fileProvider.path;
-//   let filePath = repo.filePathGet();
-//
-//   o = _.routineOptions( exportInfo, arguments );
-//
-//   if( o.dst === null )
-//   o.dst = '';
-//   if( o.src === null )
-//   debugger;
-//   if( o.src === null )
-//   o.src = _.routineCallButOnly( repo, 'exportStructure', [ 'dst' ] );
-//
-//   o.dst += _.toStrNice( o.src );
-//
-//   return o.dst;
-// }
-//
-// exportInfo.defaults =
-// {
-//   dst : null,
-//   src : null,
-//   verbosity : 9,
-// }
-
 // --
 // relations
 // --
@@ -604,17 +506,17 @@ let Proto =
   // manipulator
 
   _fileRead,
-  read,
-  write,
-  insert,
+  read, /* qqq : check coverage */
+  write, /* qqq : check coverage */
+  insert, /* qqq : check coverage */
   _pend,
-  append,
-  prepend,
-  delete : delete_,
-  deleteStrict,
+  append, /* qqq : check coverage */
+  prepend, /* qqq : check coverage */
+  delete : delete_, /* qqq : check coverage */
+  deleteStrict, /* qqq : check coverage */
 
-  clean,
-  exists,
+  clean, /* qqq : check coverage */
+  exists, /* qqq : check coverage */
 
   // exporter
 
