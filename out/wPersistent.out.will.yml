@@ -2,10 +2,13 @@ format: outwillfile-2.0
 root:
   - wPersistent.out
 consistency:
-  ../.ex.will.yml: &ref_0
+  wPersistent.out.will.yml: &ref_0
+    hash: ebb5dbb3988a2fd592bac5f7025c6e6e
+    size: 38176
+  ../.ex.will.yml: &ref_1
     hash: ef8c3e65a0172c27cb30d89ef8681deb
     size: 1720
-  ../.im.will.yml: &ref_1
+  ../.im.will.yml: &ref_2
     hash: d658d363e57471b4fde70f2e9b17f88e
     size: 4749
 module:
@@ -16,19 +19,19 @@ module:
       description: Abstract interface of persistent data storage.
       enabled: 1
       version: 0.4.0
-      interpreters: &ref_2
+      interpreters:
         - njs >= 8.0.0
         - chrome >= 60.0.0
         - firefox >= 60.0.0
-      keywords: &ref_3
+      keywords:
         - tools
         - wTools
       license: MIT
       author: Kostiantyn Wandalen <wanalen@willbe.so>
-      contributors: &ref_4
+      contributors:
         - Kostiantyn Wandalen <wanalen@willbe.so>
       npm.name: wpersistent
-      npm.scripts: &ref_5
+      npm.scripts:
         test: wtest .run proto/**
         docgen: wdocgen .build proto
     path:
@@ -694,6 +697,24 @@ module:
           content: prime
         inherit:
           - files.transpile
+      exported.proto.export:
+        opts:
+          reflector: 'reflector::exported.proto.export*'
+        criterion:
+          generated: 1
+          content: proto
+          export: 1
+        inherit:
+          - files.reflect
+      exported.files.proto.export:
+        opts:
+          reflector: 'reflector::exported.files.proto.export*'
+        criterion:
+          generated: 1
+          content: proto
+          export: 1
+        inherit:
+          - files.reflect
     build:
       proto.export:
         steps:
@@ -782,8 +803,9 @@ module:
           content: proto
           export: 1
     consistency:
-      ../.ex.will.yml: *ref_0
-      ../.im.will.yml: *ref_1
+      wPersistent.out.will.yml: *ref_0
+      ../.ex.will.yml: *ref_1
+      ../.im.will.yml: *ref_2
   ../:
     about:
       name: wPersistent
@@ -791,13 +813,21 @@ module:
       description: Abstract interface of persistent data storage.
       enabled: 1
       version: 0.4.0
-      interpreters: *ref_2
-      keywords: *ref_3
+      interpreters:
+        - njs >= 8.0.0
+        - chrome >= 60.0.0
+        - firefox >= 60.0.0
+      keywords:
+        - tools
+        - wTools
       license: MIT
       author: Kostiantyn Wandalen <wanalen@willbe.so>
-      contributors: *ref_4
+      contributors:
+        - Kostiantyn Wandalen <wanalen@willbe.so>
       npm.name: wpersistent
-      npm.scripts: *ref_5
+      npm.scripts:
+        test: wtest .run proto/**
+        docgen: wdocgen .build proto
     path:
       module.willfiles:
         criterion:
@@ -1461,3 +1491,6 @@ module:
       ../.im.will.yml:
         hash: d658d363e57471b4fde70f2e9b17f88e
         size: 4749
+      wPersistent.out.will.yml:
+        hash: ebb5dbb3988a2fd592bac5f7025c6e6e
+        size: 38176
