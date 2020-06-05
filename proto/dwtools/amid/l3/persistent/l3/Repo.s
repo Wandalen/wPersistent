@@ -435,15 +435,15 @@ exportStructure.defaults =
 
 //
 
-function exportInfo( o )
+function exportString( o )
 {
   let resource = this;
-  return _.workpiece.exportInfo( resource, ... arguments );
+  return _.workpiece.exportString( resource, ... arguments );
 }
 
-exportInfo.defaults =
+exportString.defaults =
 {
-  ... _.workpiece.exportInfo.defaults,
+  ... _.workpiece.exportString.defaults,
 }
 
 // --
@@ -521,7 +521,7 @@ let Proto =
   // exporter
 
   exportStructure,
-  exportInfo,
+  exportString,
 
   // relation
 
