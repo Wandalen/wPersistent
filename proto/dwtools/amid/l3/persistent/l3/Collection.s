@@ -6,7 +6,8 @@
 
 let _ = _global_.wTools;
 let Parent = null;
-let Self = function wCollection( o )
+let Self = wCollection;
+function wCollection( o )
 {
   return _.workpiece.construct( Self, this, arguments );
 }
