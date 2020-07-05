@@ -1,5 +1,5 @@
 
-# wPersistent [![Build Status](https://travis-ci.org/Wandalen/wPersistent.svg?branch=master)](https://travis-ci.org/Wandalen/wPersistent)
+# module::Persistent [![Status](https://github.com/Wandalen/wPersistent/workflows/Test/badge.svg)](https://github.com/Wandalen/wPersistent}/actions?query=workflow%3ATest)
 
 Abstract interface of persistent data storage.
 
