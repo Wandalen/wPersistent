@@ -109,7 +109,7 @@ module:
       entry.proto.no.tests:
         criterion:
           tests: no.tests
-        path: ../proto/dwtools/amid/l3/persistent/Include.s
+        path: ../proto/wtools/amid/l3/persistent/Include.s
       entry.proto.only.tests:
         criterion:
           tests: only.tests
@@ -119,13 +119,13 @@ module:
           debug: debug
           raw: raw
           content: prime
-        path: '{path::out.*=1}/source/dwtools/amid/l3/persistent/Include.s'
+        path: '{path::out.*=1}/source/wtools/amid/l3/persistent/Include.s'
       entry.out.raw.debug.release:
         criterion:
           debug: release
           raw: raw
           content: prime
-        path: '{path::out.*=1}/source/dwtools/amid/l3/persistent/Include.s'
+        path: '{path::out.*=1}/source/wtools/amid/l3/persistent/Include.s'
       entry.out.compiled.debug.debug:
         criterion:
           debug: debug
@@ -152,24 +152,24 @@ module:
         path:
           - ../proto
           - ../proto/Integration.test.s
-          - ../proto/dwtools
-          - ../proto/dwtools/Tools.s
-          - ../proto/dwtools/abase
-          - ../proto/dwtools/amid
-          - ../proto/dwtools/amid/l3
-          - ../proto/dwtools/amid/l3/persistent
-          - ../proto/dwtools/amid/l3/persistent/Include.s
-          - ../proto/dwtools/amid/l3/persistent/include
-          - ../proto/dwtools/amid/l3/persistent/include/Base.s
-          - ../proto/dwtools/amid/l3/persistent/include/Mid.s
-          - ../proto/dwtools/amid/l3/persistent/l1
-          - ../proto/dwtools/amid/l3/persistent/l1/Namespace.s
-          - ../proto/dwtools/amid/l3/persistent/l3
-          - ../proto/dwtools/amid/l3/persistent/l3/Collection.s
-          - ../proto/dwtools/amid/l3/persistent/l3/Repo.s
-          - ../proto/dwtools/amid/l3.test
-          - ../proto/dwtools/amid/l3.test/Persistent.test.s
-          - ../proto/dwtools/atop
+          - ../proto/wtools
+          - ../proto/wtools/Tools.s
+          - ../proto/wtools/abase
+          - ../proto/wtools/amid
+          - ../proto/wtools/amid/l3
+          - ../proto/wtools/amid/l3/persistent
+          - ../proto/wtools/amid/l3/persistent/Include.s
+          - ../proto/wtools/amid/l3/persistent/include
+          - ../proto/wtools/amid/l3/persistent/include/Base.s
+          - ../proto/wtools/amid/l3/persistent/include/Mid.s
+          - ../proto/wtools/amid/l3/persistent/l1
+          - ../proto/wtools/amid/l3/persistent/l1/Namespace.s
+          - ../proto/wtools/amid/l3/persistent/l3
+          - ../proto/wtools/amid/l3/persistent/l3/Collection.s
+          - ../proto/wtools/amid/l3/persistent/l3/Repo.s
+          - ../proto/wtools/amid/l3.test
+          - ../proto/wtools/amid/l3.test/Persistent.test.s
+          - ../proto/wtools/atop
     submodule:
       wTools:
         path: 'npm:///wTools'
@@ -896,7 +896,7 @@ module:
       entry.proto.no.tests:
         criterion:
           tests: no.tests
-        path: proto/dwtools/amid/l3/persistent/Include.s
+        path: proto/wtools/amid/l3/persistent/Include.s
       entry.proto.only.tests:
         criterion:
           tests: only.tests
@@ -906,13 +906,13 @@ module:
           debug: debug
           raw: raw
           content: prime
-        path: '{path::out.*=1}/source/dwtools/amid/l3/persistent/Include.s'
+        path: '{path::out.*=1}/source/wtools/amid/l3/persistent/Include.s'
       entry.out.raw.debug.release:
         criterion:
           debug: release
           raw: raw
           content: prime
-        path: '{path::out.*=1}/source/dwtools/amid/l3/persistent/Include.s'
+        path: '{path::out.*=1}/source/wtools/amid/l3/persistent/Include.s'
       entry.out.compiled.debug.debug:
         criterion:
           debug: debug

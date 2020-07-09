@@ -47,7 +47,7 @@ path :
       content : prime
 
   entry.proto.no.tests :
-    path : proto/dwtools/amid/l3/persistent/Include.s
+    path : proto/wtools/amid/l3/persistent/Include.s
     criterion :
       tests : 'no.tests'
   entry.proto.only.tests :
@@ -56,7 +56,7 @@ path :
       tests : 'only.tests'
 
   entry.out.raw.debug :
-    path : '{path::out.*=1}/source/dwtools/amid/l3/persistent/Include.s'
+    path : '{path::out.*=1}/source/wtools/amid/l3/persistent/Include.s'
     criterion :
       debug : [ debug, release ]
       raw : raw
