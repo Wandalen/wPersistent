@@ -6,5 +6,5 @@ Abstract interface of persistent data storage.
 ## Try out
 ```
 npm install
-node sample/Sample.js
+node sample/Sample.s
 ```
