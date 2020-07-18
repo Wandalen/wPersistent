@@ -37,7 +37,7 @@ function close( repo )
 // declare
 // --
 
-let Extend =
+let Extension =
 {
 
   open,
@@ -45,7 +45,7 @@ let Extend =
 
 }
 
-_.mapExtend( Self, Extend );
+_.mapExtend( Self, Extension );
 
 //
 
