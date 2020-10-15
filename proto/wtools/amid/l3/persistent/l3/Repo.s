@@ -306,7 +306,7 @@ function prepend( selector, structure )
 
 /* qqq : please cover routines delete and deleteStrict. check returned value and throwing cases */
 
-function delete_pre( routine, args )
+function delete_head( routine, args )
 {
   let repo = this;
 
@@ -374,10 +374,10 @@ delete_body.defaults =
 
 //
 
-let delete_ = _.routineFromPreAndBody( delete_pre, delete_body, 'delete' );
+let delete_ = _.routineUnite( delete_head, delete_body, 'delete' );
 delete_.defaults.strict = 0;
 
-let deleteStrict = _.routineFromPreAndBody( delete_pre, delete_body, 'deleteStrict' );
+let deleteStrict = _.routineUnite( delete_head, delete_body, 'deleteStrict' );
 deleteStrict.defaults.strict = 1;
 
 //
