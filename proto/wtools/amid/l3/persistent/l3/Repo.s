@@ -374,10 +374,10 @@ delete_body.defaults =
 
 //
 
-let delete_ = _.routineUnite( delete_head, delete_body, 'delete' );
+let delete_ = _.routineUnite({ head : delete_head, body : delete_body, name : 'delete' });
 delete_.defaults.strict = 0;
 
-let deleteStrict = _.routineUnite( delete_head, delete_body, 'deleteStrict' );
+let deleteStrict = _.routineUnite({ head : delete_head, body : delete_body, name : 'deleteStrict' });
 deleteStrict.defaults.strict = 1;
 
 //
