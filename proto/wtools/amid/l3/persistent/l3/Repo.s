@@ -1,4 +1,5 @@
-( function _Repo_s_( ) {
+( function _Repo_s_()
+{
 
 'use strict';
 
@@ -55,7 +56,7 @@ function _collection( o )
 
   return _.persistent.Collection
   ({
-    repo : repo,
+    repo,
     name : o.name,
     kind : o.kind,
   });
