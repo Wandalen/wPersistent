@@ -1,6 +1,6 @@
 {
   "name" : "wpersistent",
-  "version" : "0.3.66",
+  "version" : "0.3.67",
   "description" : "Abstract interface of persistent data storage.",
   "author" : "Kostiantyn Wandalen <wanalen@01.school>",
   "license" : "MIT",
@@ -17,6 +17,6 @@
     "url" : "https ://github.com/Wandalen/wPersistent/issues"
   },
   "dependencies" : { "wTools" : "alpha", "wFiles" : "alpha", "wConsequence" : "alpha" },
-  "devDependencies" : { "wpersistent" : "file:.", "wTesting" : "alpha" },
+  "devDependencies" : { "wpersistent" : "file:.", "eslint" : "=7.1.0", "wTesting" : "alpha" },
   "keywords" : [ "wTools" ]
 }
