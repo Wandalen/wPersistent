@@ -17,6 +17,6 @@
     "url" : "https ://github.com/Wandalen/wPersistent/issues"
   },
   "dependencies" : { "wTools" : "", "wFiles" : "", "wConsequence" : "" },
-  "devDependencies" : { "wpersistent" : "file:.", "wTesting" : "" },
+  "devDependencies" : { "wpersistent" : "file:.", "eslint" : "=7.1.0", "wTesting" : "" },
   "keywords" : [ "wTools" ]
 }

@@ -1,4 +1,5 @@
-( function _Persistent_test_s_( ) {
+( function _Persistent_test_s_()
+{
 
 'use strict';
 
@@ -26,7 +27,9 @@ function basicArray( test )
 {
 
   test.description = 'wipe';
-  _.persistent.open({ name : '.' + test.suite.name }).clean().close();
+  _.persistent.open({ name : '.' + test.suite.name })
+  .clean()
+  .close();
 
   test.description = 'writing';
   var structure1 = { a : '1', b : { c : [ 1, 2, 3 ], d : null } }
@@ -57,16 +60,18 @@ function basicArray( test )
   test.identical( read, exp );
 
   test.description = 'clean';
-  _.persistent.open( '.' + test.suite.name ).array( 'account' ).clean();
-  var exp =
-  [
-  ]
+  _.persistent.open( '.' + test.suite.name )
+  .array( 'account' )
+  .clean();
+  var exp = [];
   var persistent = _.persistent.open({ name : '.' + test.suite.name });
   var read = persistent.array( 'account' ).read();
   persistent.close();
   test.identical( read, exp );
 
-  _.persistent.open({ name : '.' + test.suite.name }).clean().close();
+  _.persistent.open({ name : '.' + test.suite.name })
+  .clean()
+  .close();
 }
 
 basicArray.description =
@@ -82,7 +87,9 @@ function write( test )
 {
 
   test.description = 'wipe';
-  _.persistent.open({ name : '.' + test.suite.name }).clean().close();
+  _.persistent.open({ name : '.' + test.suite.name })
+  .clean()
+  .close();
   var persistent = _.persistent.open({ name : '.' + test.suite.name });
   var structure1 = { a : 1 }
   var structure2 = { a : 2 }
@@ -127,7 +134,9 @@ function write( test )
   /* */
 
   test.description = 'wipe';
-  _.persistent.open({ name : '.' + test.suite.name }).clean().close();
+  _.persistent.open({ name : '.' + test.suite.name })
+  .clean()
+  .close();
 
   /* */
 
@@ -146,7 +155,9 @@ function writeString( test )
 {
 
   test.description = 'wipe';
-  _.persistent.open({ name : '.' + test.suite.name }).clean().close();
+  _.persistent.open({ name : '.' + test.suite.name })
+  .clean()
+  .close();
   var persistent = _.persistent.open({ name : '.' + test.suite.name });
   var str1 = 'str'
 
@@ -189,7 +200,9 @@ function writeString( test )
   /* */
 
   test.description = 'wipe';
-  _.persistent.open({ name : '.' + test.suite.name }).clean().close();
+  _.persistent.open({ name : '.' + test.suite.name })
+  .clean()
+  .close();
 
   /* */
 
@@ -217,10 +230,7 @@ function append( test )
   {
     'a' :
     {
-      'b' :
-      [
-        { 'x' : 1 }
-      ]
+      'b' : [ { 'x' : 1 } ]
     }
   }
   var read = persistent.read();
@@ -236,10 +246,7 @@ function append( test )
 
   var exp =
   {
-    'a' :
-    [
-      { 'x' : 1 }
-    ]
+    'a' : [ { 'x' : 1 } ]
   }
   var read = persistent.read();
   test.identical( read, exp );
@@ -259,7 +266,9 @@ function append( test )
   /* */
 
   persistent.close();
-  _.persistent.open({ name : '.' + test.suite.name }).clean().close();
+  _.persistent.open({ name : '.' + test.suite.name })
+  .clean()
+  .close();
 }
 
 append.description =
@@ -285,10 +294,7 @@ function prepend( test )
   {
     'a' :
     {
-      'b' :
-      [
-        { 'x' : 1 }
-      ]
+      'b' : [ { 'x' : 1 } ]
     }
   }
   var read = persistent.read();
@@ -304,10 +310,7 @@ function prepend( test )
 
   var exp =
   {
-    'a' :
-    [
-      { 'x' : 1 }
-    ]
+    'a' : [ { 'x' : 1 } ]
   }
   var read = persistent.read();
   test.identical( read, exp );
@@ -327,7 +330,9 @@ function prepend( test )
   /* */
 
   persistent.close();
-  _.persistent.open({ name : '.' + test.suite.name }).clean().close();
+  _.persistent.open({ name : '.' + test.suite.name })
+  .clean()
+  .close();
 }
 
 prepend.description =
@@ -389,7 +394,9 @@ function insert( test )
   /* */
 
   persistent.close();
-  _.persistent.open({ name : '.' + test.suite.name }).clean().close();
+  _.persistent.open({ name : '.' + test.suite.name })
+  .clean()
+  .close();
 }
 
 insert.description =
@@ -473,14 +480,18 @@ function deleteRewriting( test )
   /* */
 
   test.description = 'wipe';
-  _.persistent.open({ name : '.' + test.suite.name }).clean().close();
+  _.persistent.open({ name : '.' + test.suite.name })
+  .clean()
+  .close();
 
   /* */
 
   function write()
   {
     test.description = 'wipe';
-    _.persistent.open({ name : '.' + test.suite.name }).clean().close();
+    _.persistent.open({ name : '.' + test.suite.name })
+    .clean()
+    .close();
 
     test.description = 'writing';
     var structure1 = { x : 1 }
@@ -563,7 +574,9 @@ function basicMap( test )
   test.identical( read, exp );
 
   test.description = 'clean';
-  _.persistent.open( '.' + test.suite.name ).array( 'account' ).clean();
+  _.persistent.open( '.' + test.suite.name )
+  .array( 'account' )
+  .clean();
   var exp =
   {
   }
@@ -572,7 +585,9 @@ function basicMap( test )
   persistent.close();
   test.identical( read, exp );
 
-  _.persistent.open({ name : '.' + test.suite.name }).clean().close();
+  _.persistent.open({ name : '.' + test.suite.name })
+  .clean()
+  .close();
 }
 
 basicMap.description =
@@ -803,7 +818,9 @@ function secondLevel( test )
   test.identical( read, exp );
 
   test.description = 'clean';
-  _.persistent.open( '.' + test.suite.name ).clean().close();
+  _.persistent.open( '.' + test.suite.name )
+  .clean()
+  .close();
   var exp ={}
   var persistent = _.persistent.open({ name : '.' + test.suite.name });
   var read = persistent.read( '/' );
@@ -836,10 +853,7 @@ function persistentClean( test )
   test.identical( got, true );
 
   test.description = 'written 2';
-  var exp =
-  [
-    { a : '1', b : { c : [ 1, 2, 3 ], d : null } },
-  ]
+  var exp = [ { a : '1', b : { c : [ 1, 2, 3 ], d : null } } ];
   var persistent = _.persistent.open({ name : '.' + test.suite.name });
   var read = persistent.array( 'account' ).read();
   persistent.close();
@@ -849,9 +863,7 @@ function persistentClean( test )
   var persistent = _.persistent.open({ name : '.' + test.suite.name });
   persistent.clean()
   persistent.close();
-  var exp =
-  [
-  ]
+  var exp = [];
   var persistent = _.persistent.open({ name : '.' + test.suite.name });
   var read = persistent.array( 'account' ).read();
   persistent.close();

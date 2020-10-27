@@ -1,4 +1,5 @@
-( function _Collection_s_( ) {
+( function _Collection_s_()
+{
 
 'use strict';
 
@@ -69,7 +70,7 @@ function _collection( o )
 
   return _.persistent.Collection
   ({
-    repo : repo,
+    repo,
     name : o.name,
     kind : o.kind,
     selector : o.selector,
@@ -217,7 +218,7 @@ function read()
     return Object.create( null );
   }
 
-  read = _.fileProvider.fileRead({ filePath : filePath, encoding : 'json' });
+  read = _.fileProvider.fileRead({ filePath, encoding : 'json' });
 
   if( collection.selector === '/' )
   return read;
