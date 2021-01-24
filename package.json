@@ -1,22 +1,36 @@
 {
-  "name" : "wpersistent",
-  "version" : "0.3.84",
-  "description" : "Abstract interface of persistent data storage.",
-  "author" : "Kostiantyn Wandalen <wanalen@01.school>",
-  "license" : "MIT",
-  "main" : "proto/wtools/amid/l3/persistent/Include.s",
-  "files" : [ "proto/wtools/amid/l3", "proto/wtools/Tools.s" ],
-  "scripts" : { "test" : "wtest .run 'proto/**' rapidity:-3", "docgen" : "wdocgen .build proto" },
-  "repository" :
-  {
-    "type" : "git",
-    "url" : "https ://github.com/Wandalen/wPersistent.git"
+  "name": "wpersistent",
+  "version": "0.3.85",
+  "description": "Abstract interface of persistent data storage.",
+  "author": "Kostiantyn Wandalen <wanalen@01.school>",
+  "license": "MIT",
+  "main": "proto/wtools/amid/l3/persistent/Include.s",
+  "files": [
+    "proto/wtools/amid/l3",
+    "proto/wtools/Tools.s"
+  ],
+  "scripts": {
+    "test": "wtest .run 'proto/**' rapidity:-3",
+    "docgen": "wdocgen .build proto"
   },
-  "bugs" :
-  {
-    "url" : "https ://github.com/Wandalen/wPersistent/issues"
+  "repository": {
+    "type": "git",
+    "url": "https ://github.com/Wandalen/wPersistent.git"
   },
-  "dependencies" : { "wTools" : "alpha", "wFiles" : "alpha", "wConsequence" : "alpha" },
-  "devDependencies" : { "wpersistent" : "file:.", "eslint" : "=7.1.0", "wTesting" : "alpha" },
-  "keywords" : [ "wTools" ]
+  "bugs": {
+    "url": "https ://github.com/Wandalen/wPersistent/issues"
+  },
+  "dependencies": {
+    "wTools": "alpha",
+    "wFiles": "alpha",
+    "wConsequence": "alpha"
+  },
+  "devDependencies": {
+    "eslint": "7.1.0",
+    "wTesting": "alpha",
+    "wpersistent": "file:."
+  },
+  "keywords": [
+    "wTools"
+  ]
 }
