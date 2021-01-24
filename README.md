@@ -8,7 +8,7 @@ Abstract interface of persistent data storage.
 git clone https://github.com/Wandalen/wPersistent
 cd wPersistent
 npm install
-node sample/Sample.s
+node sample/trivial/Sample.s
 ```
 
 ## To add to your project
