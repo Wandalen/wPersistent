@@ -342,17 +342,7 @@ function delete_body( o )
 
   let read = repo._fileRead( o.selector );
 
-  if( !read.selector2 )
-  {
-    if( !_.fileProvider.isTerminal( read.filePath ) )
-    {
-      if( o.strict )
-      throw _.err( `Does not exist ${o.selector}` );
-      return false;
-    }
-    _.fileProvider.fileDelete( read.filePath );
-  }
-  else
+  if( read.selector2 )
   {
     _.selectSet
     ({
@@ -362,6 +352,17 @@ function delete_body( o )
       missingAction : o.strict ? 'throw' : 'undefine',
     });
     _.fileProvider.fileWrite( read.filePath, _.toJson( read.structure ) );
+
+  }
+  else
+  {
+    if( !_.fileProvider.isTerminal( read.filePath ) )
+    {
+      if( o.strict )
+      throw _.err( `Does not exist ${o.selector}` );
+      return false;
+    }
+    _.fileProvider.fileDelete( read.filePath );
   }
 
   return true;
