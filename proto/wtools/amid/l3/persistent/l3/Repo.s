@@ -207,7 +207,7 @@ function write( selector, structure )
   {
     read.structure = structure;
   }
-  else if( read.selector2  )
+  else if( read.selector2 )
   {
     if( read.structure === undefined )
     read.structure = Object.create( null );
