@@ -216,7 +216,7 @@ function write( selector, structure )
 
   if( _.fileProvider.isDir( read.filePath ) )
   throw _.err( `${read.filePath} is directory, cant overwrite!` );
-  _.fileProvider.fileWrite( read.filePath, _.toJson( read.structure ) );
+  _.fileProvider.fileWrite( read.filePath, _.entity.exportJson( read.structure ) );
 
 }
 
@@ -351,7 +351,7 @@ function delete_body( o )
       set : undefined,
       missingAction : o.strict ? 'throw' : 'undefine',
     });
-    _.fileProvider.fileWrite( read.filePath, _.toJson( read.structure ) );
+    _.fileProvider.fileWrite( read.filePath, _.entity.exportJson( read.structure ) );
 
   }
   else

@@ -194,7 +194,7 @@ function write( structure )
 
   if( _.fileProvider.isDir( filePath ) )
   throw _.err( `${filePath} is directory, cant overwrite!` );
-  _.fileProvider.fileWrite( filePath, _.toJson( structure ) );
+  _.fileProvider.fileWrite( filePath, _.entity.exportJson( structure ) );
 
   return collection;
 }
