@@ -447,6 +447,7 @@ function exportString( o )
 exportString.defaults =
 {
   ... _.workpiece.exportString.defaults,
+  it : null,
 }
 
 // --
