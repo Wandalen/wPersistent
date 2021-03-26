@@ -6,8 +6,8 @@
 // let persistent = _.persistent.open({ name : '.system.wcloud' });
 // persistent.array( 'account' ).write( structure );
 
-let _ = _global_.wTools;
-let Self = _.persistent = _.persistent || Object.create( null );
+const _ = _global_.wTools;
+const Self = _.persistent = _.persistent || Object.create( null );
 
 // --
 // inter

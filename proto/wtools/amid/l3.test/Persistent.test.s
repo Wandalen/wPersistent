@@ -16,8 +16,8 @@ if( typeof module !== 'undefined' )
 
 }
 
-let _global = _global_;
-let _ = _global_.wTools;
+const _global = _global_;
+const _ = _global_.wTools;
 
 // --
 // tests
@@ -885,7 +885,7 @@ persistentClean.description =
 // define class
 // --
 
-let Self =
+const Proto =
 {
 
   name : 'Tools.amid.Persistent',
@@ -913,7 +913,7 @@ let Self =
 // export
 // --
 
-Self = wTestSuite( Self );
+const Self = wTestSuite( Proto );
 if( typeof module !== 'undefined' && !module.parent )
 wTester.test( Self.name );
 
