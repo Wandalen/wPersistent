@@ -1,13 +1,14 @@
 {
   "name": "wpersistent",
-  "version": "0.3.107",
+  "version": "0.3.108",
   "description": "Abstract interface of persistent data storage.",
   "author": "Kostiantyn Wandalen <wanalen@01.school>",
   "license": "MIT",
   "main": "proto/wtools/amid/l3/persistent/Include.s",
   "files": [
     "proto/wtools/amid/l3",
-    "proto/wtools/Tools.s"
+    "proto/wtools/Tools.s",
+    "proto/node_modules"
   ],
   "scripts": {
     "test": "wtest .run 'proto/**' rapidity:-3",
@@ -27,8 +28,7 @@
   },
   "devDependencies": {
     "eslint": "7.1.0",
-    "wTesting": "delta",
-    "wpersistent": "file:."
+    "wTesting": "delta"
   },
   "keywords": [
     "wTools"
