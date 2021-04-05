@@ -79,8 +79,8 @@ path:
       raw: compiled
       content: prime
   npm.proto.entry:
-    - /pro/module/wPersistent/proto/wtools/amid/l3/persistent/Include.s
-    - /pro/module/wPersistent/proto/node_modules/wpersistent
+    - proto/wtools/amid/l3/persistent/Include.s
+    - proto/node_modules/wpersistent
 reflector:
   reflect.proto:
     inherit: predefined.*
