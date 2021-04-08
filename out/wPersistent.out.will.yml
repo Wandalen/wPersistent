@@ -1523,6 +1523,4 @@ module:
       ../.im.will.yml:
         hash: c320a3832d4d2ae704dcaf14c022ba48
         size: 5041
-      wPersistent.out.will.yml:
-        hash: 60cdca234bf3aec8ac6c4032a71e9a80
-        size: 39176
+      wPersistent.out.will.yml: *ref_0
