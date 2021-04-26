@@ -317,7 +317,7 @@ function delete_head( routine, args )
   }
 
   _.assert( args.length === 1 );
-  _.routineOptions( routine, args );
+  _.routine.options_( routine, args );
 
   let o = args[ 0 ];
 
@@ -333,7 +333,7 @@ function delete_body( o )
 {
   let repo = this;
 
-  _.assertRoutineOptions( delete_body, arguments );
+  _.routine.assertOptions( delete_body, arguments );
 
   if( o.selector === '/' )
   {
@@ -376,10 +376,10 @@ delete_body.defaults =
 
 //
 
-let delete_ = _.routine.uniteCloning_({ head : delete_head, body : delete_body, name : 'delete' });
+let delete_ = _.routine.uniteCloning_replaceByUnite({ head : delete_head, body : delete_body, name : 'delete' });
 delete_.defaults.strict = 0;
 
-let deleteStrict = _.routine.uniteCloning_({ head : delete_head, body : delete_body, name : 'deleteStrict' });
+let deleteStrict = _.routine.uniteCloning_replaceByUnite({ head : delete_head, body : delete_body, name : 'deleteStrict' });
 deleteStrict.defaults.strict = 1;
 
 //
@@ -390,7 +390,7 @@ function clean( o )
   let path = _.fileProvider.path;
   let filePath = repo.filePathGet();
 
-  o = _.routineOptions( clean, arguments );
+  o = _.routine.options_( clean, arguments );
 
   _.fileProvider.filesDelete({ filePath, mandatory : o.strict });
 
@@ -421,7 +421,7 @@ function exportStructure( o )
 {
   let resource = this;
 
-  o = _.routineOptions( exportStructure, arguments );
+  o = _.routine.options_( exportStructure, arguments );
 
   if( o.src === null )
   o.src = resource;
