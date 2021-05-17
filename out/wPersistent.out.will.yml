@@ -2,10 +2,7 @@ format: outwillfile-2.0
 root:
   - wPersistent.out
 consistency:
-  wPersistent.out.will.yml: &ref_0
-    hash: 0b8592b1f52668238bf240d7092e86cd
-    size: 38807
-  ../will.yml: &ref_1
+  ../will.yml: &ref_0
     hash: abd5be5baa0ad6b328c8ae5224ae99d3
     size: 6522
 module:
@@ -19,16 +16,16 @@ module:
       license: MIT
       npm.name: wpersistent
       author: Kostiantyn Wandalen <wanalen@01.school>
-      keywords:
+      keywords: &ref_1
         - tools
         - wTools
-      contributors:
+      contributors: &ref_2
         - Kostiantyn Wandalen <wanalen@01.school>
-      interpreters:
+      interpreters: &ref_3
         - njs >= 10.0.0
         - chrome >= 60.0.0
         - firefox >= 60.0.0
-      npm.scripts:
+      npm.scripts: &ref_4
         test: wtest .run proto/**
         docgen: wdocgen .build proto
     path:
@@ -708,24 +705,6 @@ module:
           content: prime
         inherit:
           - files.transpile
-      exported.proto.export:
-        opts:
-          filePath: 'reflector::exported.proto.export'
-        criterion:
-          generated: 1
-          content: proto
-          export: 1
-        inherit:
-          - files.reflect
-      exported.files.proto.export:
-        opts:
-          filePath: 'reflector::exported.files.proto.export'
-        criterion:
-          generated: 1
-          content: proto
-          export: 1
-        inherit:
-          - files.reflect
     build:
       proto.export:
         steps:
@@ -814,8 +793,7 @@ module:
           content: proto
           export: 1
     consistency:
-      wPersistent.out.will.yml: *ref_0
-      ../will.yml: *ref_1
+      ../will.yml: *ref_0
   ../:
     about:
       name: wPersistent
@@ -826,18 +804,10 @@ module:
       license: MIT
       npm.name: wpersistent
       author: Kostiantyn Wandalen <wanalen@01.school>
-      keywords:
-        - tools
-        - wTools
-      contributors:
-        - Kostiantyn Wandalen <wanalen@01.school>
-      interpreters:
-        - njs >= 10.0.0
-        - chrome >= 60.0.0
-        - firefox >= 60.0.0
-      npm.scripts:
-        test: wtest .run proto/**
-        docgen: wdocgen .build proto
+      keywords: *ref_1
+      contributors: *ref_2
+      interpreters: *ref_3
+      npm.scripts: *ref_4
     path:
       module.willfiles:
         criterion:
@@ -1508,6 +1478,3 @@ module:
       ../will.yml:
         hash: abd5be5baa0ad6b328c8ae5224ae99d3
         size: 6522
-      wPersistent.out.will.yml:
-        hash: 0b8592b1f52668238bf240d7092e86cd
-        size: 38807
