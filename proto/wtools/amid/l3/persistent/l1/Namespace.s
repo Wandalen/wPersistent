@@ -7,7 +7,7 @@
 // persistent.array( 'account' ).write( structure );
 
 const _ = _global_.wTools;
-const Self = _.persistent = _.persistent || Object.create( null );
+_.persistent = _.persistent || Object.create( null );
 
 // --
 // inter
@@ -46,7 +46,7 @@ let Extension =
 
 }
 
-_.props.extend( Self, Extension );
+/* _.props.extend */Object.assign( _.persistent, Extension );
 
 //
 
