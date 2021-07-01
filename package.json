@@ -1,22 +1,37 @@
 {
-  "name" : "wpersistent",
-  "version" : "0.3.128",
-  "description" : "Abstract interface of persistent data storage.",
-  "author" : "Kostiantyn Wandalen <wanalen@01.school>",
-  "license" : "MIT",
-  "main" : "proto/node_modules/wpersistent",
-  "files" : [ "proto/wtools/amid/l3", "proto/node_modules", "proto/node_modules/Tools", "proto/node_modules/wpersistent" ],
-  "scripts" : { "test" : "wtest .run 'proto/**' rapidity:-3", "docgen" : "wdocgen .build proto" },
-  "repository" :
-  {
-    "type" : "git",
-    "url" : "https ://github.com/Wandalen/wPersistent.git"
+  "name": "wpersistent",
+  "version": "0.3.129",
+  "description": "Abstract interface of persistent data storage.",
+  "author": "Kostiantyn Wandalen <wanalen@01.school>",
+  "license": "MIT",
+  "main": "proto/node_modules/wpersistent",
+  "files": [
+    "proto/wtools/amid/l3",
+    "proto/node_modules",
+    "proto/node_modules/Tools",
+    "proto/node_modules/wpersistent"
+  ],
+  "scripts": {
+    "test": "wtest .run 'proto/**' rapidity:-3",
+    "docgen": "wdocgen .build proto"
   },
-  "bugs" :
-  {
-    "url" : "https ://github.com/Wandalen/wPersistent/issues"
+  "repository": {
+    "type": "git",
+    "url": "https ://github.com/Wandalen/wPersistent.git"
   },
-  "dependencies" : { "wTools" : "gamma", "wFiles" : "gamma", "wConsequence" : "gamma" },
-  "devDependencies" : { "eslint" : "=7.1.0", "wTesting" : "gamma" },
-  "keywords" : [ "wTools" ]
+  "bugs": {
+    "url": "https ://github.com/Wandalen/wPersistent/issues"
+  },
+  "dependencies": {
+    "wTools": "gamma",
+    "wFiles": "gamma",
+    "wConsequence": "gamma"
+  },
+  "devDependencies": {
+    "wTesting": "gamma",
+    "eslint": "=7.1.0"
+  },
+  "keywords": [
+    "wTools"
+  ]
 }
