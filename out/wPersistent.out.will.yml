@@ -3,8 +3,8 @@ root:
   - wPersistent.out
 consistency:
   ../will.yml: &ref_0
-    hash: 8955973504c8176362df69e699da2b36
-    size: 6381
+    hash: 531a9053cb0f4ecc7f38b4875052b928
+    size: 6389
 module:
   wPersistent.out:
     about:
@@ -1458,5 +1458,5 @@ module:
           - 'build::npm'
     consistency:
       ../will.yml:
-        hash: 8955973504c8176362df69e699da2b36
-        size: 6381
+        hash: 531a9053cb0f4ecc7f38b4875052b928
+        size: 6389
