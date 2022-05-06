@@ -1,6 +1,6 @@
 {
   "name": "wpersistent",
-  "version": "0.3.158",
+  "version": "0.3.159",
   "description": "Abstract interface of persistent data storage.",
   "author": "Kostiantyn Wandalen <wandalen@obox.systems>",
   "license": "MIT",
